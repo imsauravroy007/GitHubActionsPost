@@ -2,14 +2,29 @@ name: Repository Dispatch
 on:
   repository_dispatch:
     types: myEvent
+#jobs:
+# myEvent:
+#  runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#        with:
+#          ref: ${{ github.event.client_payload.ref }}
+#      - run: echo "::set-output name=my_variable_1::${{ github.event.client_payload.key1 }}"
+
 jobs:
   myEvent:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.client_payload.ref }}
-      - run: echo "::set-output name=my_variable_1::${{ github.event.client_payload.key1 }}"
+      - name: Save client_payload to environment variable
+        run: echo "PAYLOAD=${{ toJSON(github.event.client_payload) }}" >> $GITHUB_ENV
+      - name: Use payload in a script
+        run: |
+          echo "Raw payload: $PAYLOAD"
+          # You can then parse this JSON string in a script (e.g., Python, Node.js)
+          # For example, in Python:
+          import json
+          payload_data = json.loads(os.environ.get('PAYLOAD'))
+          print(payload_data['key1'])
       
 
 
