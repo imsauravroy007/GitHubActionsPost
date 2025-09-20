@@ -20,7 +20,7 @@ jobs:
           # For example, to parse a specific field using jq:
           NAME=$(echo "$CLIENT_PAYLOAD_JSON" | jq -r '.Name')
           echo "Name: $NAME"
-          echo "$NAME=$NAME" >> $GITHUB_ENV # Set environment variable
+          echo "$NAME=test" >> $GITHUB_ENV # Set environment variable
       - name: Try to access the variable from next Step
         run: |
           echo "Accessing name variable from previous step"
