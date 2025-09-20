@@ -1,0 +1,22 @@
+ name: My Web App Triggered Workflow
+    on:
+      repository_dispatch:
+        types: [my_custom_event] # This defines the event type your app will send
+      workflow_dispatch:
+        inputs:
+          message:
+            description: 'A message from the web app'
+            required: false
+            default: 'No message provided'
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Log message
+            run: |
+              echo "Workflow triggered by: ${{ github.event_name }}"
+              if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+                echo "Message: ${{ github.event.inputs.message }}"
+              elif [ "${{ github.event_name }}" == "repository_dispatch" ]; then
+                echo "Client payload: ${{ github.event.client_payload  }}"
+              fi
