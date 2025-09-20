@@ -18,8 +18,8 @@ jobs:
           echo "Client Payload as JSON: $CLIENT_PAYLOAD_JSON"
           # You can now use $CLIENT_PAYLOAD_JSON in subsequent commands
           # For example, to parse a specific field using jq:
-          # MY_FIELD=$(echo "$CLIENT_PAYLOAD_JSON" | jq -r '.my_field_name')
-          # echo "My Field: $MY_FIELD"
+          MY_FIELD=$(echo "$CLIENT_PAYLOAD_JSON" | jq -r '.Name')
+          echo "My Field: $MY_FIELD"
           
       
 
