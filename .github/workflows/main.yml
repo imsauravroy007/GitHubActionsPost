@@ -20,7 +20,9 @@ jobs:
           # For example, to parse a specific field using jq:
           NAME=$(echo "$CLIENT_PAYLOAD_JSON" | jq -r '.Name')
           echo "Name: $NAME"
-          
+      - name: Try to access the variable from next Step
+        run: |
+          echo "Name: $NAME"
       
 
 
