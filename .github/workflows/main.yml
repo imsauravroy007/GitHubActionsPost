@@ -21,6 +21,7 @@ jobs:
           echo "Client Payload as JSON: $CLIENT_PAYLOAD_JSON"
           
           NAME=$(echo "$CLIENT_PAYLOAD_JSON" | jq -r '.Name')
+          run: echo "SELECTED_COLOR=NAME" >> $GITHUB_OUTPUT
           echo "Name: $NAME"
           #run: echo "json_data=NAME" >> "$GITHUB_OUTPUT"
                     
@@ -28,6 +29,7 @@ jobs:
         run: |
           echo "Accessing name variable from previous step"
           #echo "Output from job1: ${{ needs.job1.outputs.json_data }}"
+          run: echo "The selected color is ${{ steps.job1.outputs.SELECTED_COLOR }}"
           
           
 
