@@ -26,6 +26,7 @@ jobs:
           echo "Name: $NAME"
        
       - name: Try to access the variable from next Step
+        id: step2
         run: |
           echo "Accessing name variable from previous step"
           #echo "Output from job1: ${{ needs.job1.outputs.json_data }}"
