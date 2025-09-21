@@ -5,8 +5,8 @@ on:
 
 jobs:
  
-  #myEvent:
-  job1:
+  myEvent:
+  
     runs-on: ubuntu-latest
     outputs:
           devx_data: ${{ steps.job1.outputs.devx_data }}
@@ -17,19 +17,19 @@ jobs:
               
          # steps:
       - name: Assign client_payload to variable
-        id: job1
+        id: step1
         run: |
           CLIENT_PAYLOAD_JSON='${{ toJson(github.event.client_payload) }}'
           #echo "Client Payload as JSON: $CLIENT_PAYLOAD_JSON"
-          run: echo "::set-output devx_data::$CLIENT_PAYLOAD_JSON"
+          run: echo "my_value=hello_world" >> $GITHUB_OUTPUT
           NAME=$(echo "$CLIENT_PAYLOAD_JSON" | jq -r '.Name')
           echo "Name: $NAME"
        
       - name: Try to access the variable from next Step
         run: |
           echo "Accessing name variable from previous step"
-          echo "Output from job1: ${{ needs.job1.outputs.json_data }}"
-          #run: echo "The selected color is ${{ steps.job1.outputs.GREET }}"
+          #echo "Output from job1: ${{ needs.job1.outputs.json_data }}"
+          run: echo "The selected color is ${{ steps.step1.outputs.my_value }}"
           
           
 
