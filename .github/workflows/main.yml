@@ -22,12 +22,12 @@ jobs:
           
           NAME=$(echo "$CLIENT_PAYLOAD_JSON" | jq -r '.Name')
           echo "Name: $NAME"
-          run: echo "json_data=NAME" >> "$GITHUB_OUTPUT"
+          #run: echo "json_data=NAME" >> "$GITHUB_OUTPUT"
                     
       - name: Try to access the variable from next Step
         run: |
           echo "Accessing name variable from previous step"
-          echo "Output from job1: ${{ needs.job1.outputs.json_data }}"
+          #echo "Output from job1: ${{ needs.job1.outputs.json_data }}"
           
           
 
