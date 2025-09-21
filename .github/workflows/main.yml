@@ -21,7 +21,7 @@ jobs:
         run: |
           CLIENT_PAYLOAD_JSON='${{ toJson(github.event.client_payload) }}'
           #echo "Client Payload as JSON: $CLIENT_PAYLOAD_JSON"
-          run: echo "my_value=hello_world" >> $GITHUB_OUTPUT
+          echo "my_value=hello_world" >> $GITHUB_OUTPUT
           NAME=$(echo "$CLIENT_PAYLOAD_JSON" | jq -r '.Name')
           echo "Name: $NAME"
        
