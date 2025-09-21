@@ -19,13 +19,11 @@ jobs:
         run: |
           CLIENT_PAYLOAD_JSON='${{ toJson(github.event.client_payload) }}'
           echo "Client Payload as JSON: $CLIENT_PAYLOAD_JSON"
-          # You can now use $CLIENT_PAYLOAD_JSON in subsequent commands
-          # For example, to parse a specific field using jq:
+          
           NAME=$(echo "$CLIENT_PAYLOAD_JSON" | jq -r '.Name')
           echo "Name: $NAME"
-          run: echo "json_data=$CLIENT_PAYLOAD_JSON" >> "$GITHUB_OUTPUT"
-          env:
-          Name:$NAME
+          run: echo "json_data=NAME" >> "$GITHUB_OUTPUT"
+                    
       - name: Try to access the variable from next Step
         run: |
           echo "Accessing name variable from previous step"
